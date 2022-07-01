@@ -25,10 +25,9 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/re
     rm -rf /usr/src/php/ext/redis /usr/src/php/ext/mongodb
 
 # config
-RUN composer config -g repo.packagist composer https://packagist.phpcomposer.com && \
-    cp -r /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini && \
-    sed -i '$a error_log = /usr/share/nginx/logs/php_errors.log' /usr/local/etc/php/php.ini && \
-    sed -i '$a slowlog = /usr/share/nginx/logs/php-fpm-slow.log' /usr/local/etc/php-fpm.d/www.conf
+RUN cp -r /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
+RUN sed -i '$a error_log = /usr/share/nginx/logs/php_errors.log' /usr/local/etc/php/php.ini
+RUN sed -i '$a slowlog = /usr/share/nginx/logs/php-fpm-slow.log' /usr/local/etc/php-fpm.d/www.conf
 
 WORKDIR /usr/share/nginx/html
 
