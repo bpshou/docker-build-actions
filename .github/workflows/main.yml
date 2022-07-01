@@ -1,4 +1,4 @@
-name: docker-build
+name: build-and-push-docker-image
 
 on:
   push:
@@ -32,4 +32,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/php:latest
+          tags: decezz/php:latest
