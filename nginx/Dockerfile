@@ -4,7 +4,7 @@ LABEL maintainer="nginx-buster<decezz@qq.com>"
 
 # install rely
 RUN apt-get update && \
-    apt-get -y install curl build-essential autoconf
+    apt-get -y install curl build-essential autoconf libtool
 
 # Download package
 RUN mkdir -p /usr/share/src /usr/share/nginx/temp && \
@@ -18,7 +18,7 @@ RUN mkdir -p /usr/share/src /usr/share/nginx/temp && \
     tar -zxvf /usr/share/src/pcre-8.44.tar.gz -C /usr/share/src
 
 RUN mv /usr/share/src /usr/share/nginx/ && \
-    cd /usr/share/src/pcre-8.44 && autoreconf -vfi && \
+    cd /usr/share/nginx/src/pcre-8.44 && autoreconf -vfi && \
     cd /usr/share/nginx/nginx-1.18.0
 
 # nginx configure & install
