@@ -1,26 +1,25 @@
-FROM debian:buster-slim
+FROM alpine
 
-LABEL maintainer="nginx-buster<decezz@qq.com>"
+LABEL maintainer="nginx-alpine<decezz@qq.com>"
 
 # install rely
-RUN apt-get update && \
-    apt-get -y install curl build-essential autoconf
+RUN apk add --no-cache --virtual .build curl gcc libc-dev make openssl-dev pcre-dev zlib-dev linux-headers libxslt-dev gd-dev geoip-dev perl-dev libedit-dev mercurial bash alpine-sdk findutils
 
 # Download package
-RUN mkdir -p /usr/share/src /usr/share/nginx/temp && \
-    curl -L http://nginx.org/download/nginx-1.18.0.tar.gz -o /usr/share/src/nginx-1.18.0.tar.gz && \
-    curl -L https://www.openssl.org/source/openssl-1.1.1g.tar.gz -o /usr/share/src/openssl-1.1.1g.tar.gz && \
-    curl -L http://www.zlib.net/zlib-1.2.12.tar.gz -o /usr/share/src/zlib-1.2.12.tar.gz && \
-    curl -L https://sourceforge.net/projects/pcre/files/pcre/8.44/pcre-8.44.tar.gz/download -o /usr/share/src/pcre-8.44.tar.gz && \
-    git clone https://github.com/arut/nginx-rtmp-module.git /usr/share/src/nginx-rtmp-module && \
-    tar -zxvf /usr/share/src/nginx-1.18.0.tar.gz -C /usr/share/nginx && \
-    tar -zxvf /usr/share/src/openssl-1.1.1g.tar.gz -C /usr/share/src && \
-    tar -zxvf /usr/share/src/zlib-1.2.12.tar.gz -C /usr/share/src && \
-    tar -zxvf /usr/share/src/pcre-8.44.tar.gz -C /usr/share/src
+RUN mkdir -p /home/src /home/nginx/temp && \
+    curl -L http://nginx.org/download/nginx-1.18.0.tar.gz -o /home/src/nginx-1.18.0.tar.gz && \
+    curl -L https://www.openssl.org/source/openssl-1.1.1g.tar.gz -o /home/src/openssl-1.1.1g.tar.gz && \
+    curl -L http://www.zlib.net/zlib-1.2.12.tar.gz -o /home/src/zlib-1.2.12.tar.gz && \
+    curl -L https://sourceforge.net/projects/pcre/files/pcre/8.44/pcre-8.44.tar.gz/download -o /home/src/pcre-8.44.tar.gz && \
+    git clone https://github.com/arut/nginx-rtmp-module.git /home/src/nginx-rtmp-module && \
+    tar -zxvf /home/src/nginx-1.18.0.tar.gz -C /home/nginx && \
+    tar -zxvf /home/src/openssl-1.1.1g.tar.gz -C /home/src && \
+    tar -zxvf /home/src/zlib-1.2.12.tar.gz -C /home/src && \
+    tar -zxvf /home/src/pcre-8.44.tar.gz -C /home/src
 
-RUN mv /usr/share/src /usr/share/nginx/ && \
-    cd /usr/share/nginx/src/pcre-8.44 && autoreconf -vfi && \
-    cd /usr/share/nginx/nginx-1.18.0
+RUN mv /home/src /home/nginx/ && \
+    cd /home/nginx/src/pcre-8.44 && autoreconf -vfi && \
+    cd /home/nginx/nginx-1.18.0
 
 # nginx configure & install
 RUN ./configure \
@@ -70,8 +69,10 @@ RUN ./configure \
     --with-zlib=../src/zlib-1.2.12 && \
     make -j && make install
 
-RUN chmod -R 755 /usr/share/nginx/nginx && \
-    rm -rf /usr/share/src /usr/share/nginx/nginx-1.18.0
+RUN chmod -R 755 /home/nginx/nginx && \
+    mkdir -p /usr/share && \
+    mv /home/nginx /usr/share && \
+    rm -rf /home/src /usr/share/nginx/nginx-1.18.0
 
 COPY nginx.sh /usr/share/nginx/nginx.sh
 

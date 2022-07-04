@@ -1,4 +1,4 @@
-name: build-and-push-docker-image
+name: docker-image-nginx
 
 on:
   push:
