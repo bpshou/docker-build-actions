@@ -22,7 +22,8 @@ RUN mv /usr/share/src /usr/share/nginx/ && \
     cd /usr/share/nginx/nginx-1.18.0
 
 # nginx configure & install
-RUN ./configure \
+RUN cd /usr/share/nginx/nginx-1.18.0 && \
+    ./configure \
     --prefix=.. \
     --sbin-path=sbin/nginx \
     --modules-path=modules \
