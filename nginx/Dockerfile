@@ -12,7 +12,6 @@ RUN mkdir -p /usr/share/src /usr/share/nginx/temp && \
     curl -L https://www.openssl.org/source/openssl-1.1.1g.tar.gz -o /usr/share/src/openssl-1.1.1g.tar.gz && \
     curl -L http://www.zlib.net/zlib-1.2.12.tar.gz -o /usr/share/src/zlib-1.2.12.tar.gz && \
     curl -L https://sourceforge.net/projects/pcre/files/pcre/8.44/pcre-8.44.tar.gz/download -o /usr/share/src/pcre-8.44.tar.gz && \
-    git clone https://github.com/arut/nginx-rtmp-module.git /usr/share/src/nginx-rtmp-module && \
     tar -zxvf /usr/share/src/nginx-1.18.0.tar.gz -C /usr/share/nginx && \
     tar -zxvf /usr/share/src/openssl-1.1.1g.tar.gz -C /usr/share/src && \
     tar -zxvf /usr/share/src/zlib-1.2.12.tar.gz -C /usr/share/src && \
