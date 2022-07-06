@@ -3,7 +3,7 @@ name: docker-image-nginx
 on:
   push:
     branches:
-      - 'master'
+      - 'nginx'
 
 jobs:
   docker:

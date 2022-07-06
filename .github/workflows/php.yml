@@ -3,7 +3,7 @@ name: docker-image-php
 on:
   push:
     branches:
-      - 'master'
+      - 'php'
 
 jobs:
   docker:

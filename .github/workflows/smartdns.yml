@@ -3,7 +3,7 @@ name: docker-image-smartdns
 on:
   push:
     branches:
-      - 'master'
+      - 'smartdns'
 
 jobs:
   docker:
