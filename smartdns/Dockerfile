@@ -5,7 +5,7 @@ ADD smartdns.conf /etc/smartdns/
 
 RUN apt-get update && \
     apt-get -y install curl && \
-    curl -L https://github.com/pymumu/smartdns/releases/download/Release36.1/smartdns-$(uname -m) -o /usr/bin/smartdns && \
+    curl -L "https://github.com/pymumu/smartdns/releases/download/Release36.1/smartdns-$(uname -m)" -o /usr/bin/smartdns && \
     chmod +x /entrypoint.sh && \
     chmod +x /usr/bin/smartdns
 
