@@ -1,8 +1,7 @@
 FROM debian:buster-slim
 
-ADD 
-ADD smartdns.conf /etc/smartdns/
 ADD entrypoint.sh /
+ADD smartdns.conf /etc/smartdns/
 
 RUN apt-get update && \
     apt-get -y install curl && \
