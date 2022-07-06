@@ -12,7 +12,6 @@ COPY --from=nginx:1.18      /etc/nginx/ /etc/nginx/
 
 # install extensions
 RUN sed 's/\(deb\|security\|snapshot\).debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list -i && \
-    mv /usr/src/php/ext/redis-5.3.1 /usr/src/php/ext/redis && \
     apt-get update && apt-get install -y \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
