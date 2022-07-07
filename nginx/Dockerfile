@@ -70,10 +70,11 @@ RUN cd /usr/share/nginx/nginx-1.18.0 && \
     --with-zlib=../src/zlib-1.2.12 && \
     make -j && make install
 
-RUN chmod -R 755 /usr/share/nginx/nginx && \
-    rm -rf /usr/share/src /usr/share/nginx/nginx-1.18.0
 
 COPY nginx.sh /usr/share/nginx/nginx.sh
+
+RUN chmod +x /usr/share/nginx/nginx.sh && \
+    rm -rf /usr/share/src /usr/share/nginx/nginx-1.18.0
 
 WORKDIR /usr/share/nginx/html
 
