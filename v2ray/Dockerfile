@@ -1,6 +1,5 @@
 FROM alpine:latest
 
-COPY entrypoint.sh /entrypoint.sh
 COPY v2ray.sh /root/v2ray.sh
 
 RUN apk add --no-cache --virtual .build-deps ca-certificates && \
@@ -11,6 +10,6 @@ EXPOSE 10808 10809 10810
 
 VOLUME /etc/v2ray
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["v2ray"]
 
-CMD ["-config", "/etc/v2ray/config.json"]
+CMD ["run", "-c", "/etc/v2ray/config.json"]

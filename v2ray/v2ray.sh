@@ -10,12 +10,10 @@ fi
 
 
 # Download and install V2Ray
-mkdir ${tmp_dir}
-wget -q https://github.com/v2fly/v2ray-core/releases/latest/download/v2ray-linux-64.zip -O ${tmp_dir}/v2ray-linux.zip
+wget -q https://github.com/v2fly/v2ray-core/releases/latest/download/${v2ray_name} -O ${tmp_dir}/v2ray-linux.zip
 
 unzip ${tmp_dir}/v2ray-linux.zip -d ${tmp_dir}
-cp -r ${tmp_dir}/v2ray /usr/bin/v2ray
-cp -r ${tmp_dir}/v2ctl /usr/bin/v2ctl
+cp -r ${tmp_dir}/v2ray /usr/bin/
 cp -r ${tmp_dir}/geo* /usr/bin/
 
 # Remove temporary directory
@@ -23,7 +21,7 @@ rm -rf ${tmp_dir}/
 
 # V2Ray new configuration
 mkdir -p /etc/v2ray
-cat << EOF > /etc/v2ray/config.json
+cat > /etc/v2ray/config.json << EOF
 {
     "inbounds": [
         {
