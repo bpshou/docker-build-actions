@@ -17,7 +17,6 @@ RUN mkdir -p /run/sshd && \
     sed -i "s/#PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config && \
     sed -i "s/#GatewayPorts no/GatewayPorts yes/g" /etc/ssh/sshd_config && \
     sed -i "s/#AddressFamily any/AddressFamily any/g" /etc/ssh/sshd_config && \
-    echo "root:origin123456" | chpasswd && \
     chmod +x /usr/bin/ttyd && \
     chmod +x /entrypoint.sh
 
