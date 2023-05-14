@@ -27,4 +27,4 @@ EXPOSE 2222 8686
 
 ENTRYPOINT ["/entrypoint.sh"] 
 
-CMD ["sshd", "-p", "2222", "-D"]
+CMD ["/usr/sbin/sshd", "-p", "2222", "-D"]
