@@ -1,10 +1,12 @@
+ARG PHP_VERSION=7.4
+
 FROM nginx:1.18 AS NGINX
 
 FROM composer:2.5 AS COMPOSER
 
-FROM php:7.4-fpm-buster
+FROM php:$PHP_VERSION-fpm-buster
 
-LABEL maintainer="php:7.4-fpm-buster<decezz@qq.com>"
+LABEL maintainer="php:$PHP_VERSION-fpm-buster <decezz@qq.com>"
 
 # 安装nginx
 COPY --from=NGINX /usr/sbin/nginx /usr/sbin/nginx
