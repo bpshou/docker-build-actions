@@ -24,15 +24,15 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Build and push
-        uses: docker/build-push-action@v3
-        with:
-          context: ./php/
-          file: ./php/Dockerfile
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
-          push: true
-          tags: decezz/php:latest
+      # -
+      #   name: Build and push
+      #   uses: docker/build-push-action@v3
+      #   with:
+      #     context: ./php/
+      #     file: ./php/Dockerfile
+      #     platforms: linux/amd64,linux/arm64,linux/arm/v7
+      #     push: true
+      #     tags: decezz/php:latest
       -
         name: Build and push 7.2
         uses: docker/build-push-action@v3
