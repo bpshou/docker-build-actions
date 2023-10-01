@@ -49,7 +49,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./php/
-          file: ./php/Dockerfile-no-gd
+          file: ./php/Dockerfile
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           build-args: |
             PHP_VERSION=7.2

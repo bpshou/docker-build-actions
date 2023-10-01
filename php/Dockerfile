@@ -35,13 +35,12 @@ RUN sed 's/\(deb\|security\|snapshot\).debian.org/mirrors.aliyun.com/g' /etc/apt
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libpng-dev && \
-    docker-php-ext-configure gd --with-freetype --with-jpeg && \
-    docker-php-ext-install pdo_mysql mysqli bcmath -j$(nproc) gd pcntl
+    docker-php-ext-install -j$(nproc) gd pcntl
 
 # install install-php-extensions
 RUN curl -fsSL https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions > /usr/local/bin/install-php-extensions && \
     chmod +x /usr/local/bin/install-php-extensions && \
-    install-php-extensions redis
+    install-php-extensions pdo_mysql mysqli bcmath gd redis
 
 
 WORKDIR /usr/share/nginx/html
