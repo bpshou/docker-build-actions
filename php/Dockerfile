@@ -33,12 +33,12 @@ RUN composer config -g repo.packagist composer https://packagist.phpcomposer.com
 RUN sed 's/\(deb\|security\|snapshot\).debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list -i && \
     apt-get update && apt-get install -y \
         git && \
-    docker-php-ext-install -j$(nproc) pcntl
+    docker-php-ext-install pdo_mysql mysqli bcmath -j$(nproc) pcntl
 
 # install install-php-extensions
 RUN curl -fsSL https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions > /usr/local/bin/install-php-extensions && \
     chmod +x /usr/local/bin/install-php-extensions && \
-    install-php-extensions pdo_mysql mysqli bcmath gd redis
+    install-php-extensions gd redis
 
 
 WORKDIR /usr/share/nginx/html
